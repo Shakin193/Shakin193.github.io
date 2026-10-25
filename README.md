@@ -7,7 +7,7 @@ Personal homepage built as a single HTML file. No build tools needed — just op
 1. **Open locally**: `open portfolio/index.html` (or double-click the file)
 2. **Or serve it**: `python3 -m http.server 8000` from this folder, then visit <http://localhost:8000>
 3. **Videos** live in `media/` and are linked relative to `index.html`, so keep the whole `media/` folder together with the page.
-4. **Photo & CV** — the hero avatar uses `照片_副本.jpg` and the contact section links to `resume.docx`.
+4. **Photo & CV** — the hero avatar uses `photo.jpg` and the contact section links to `resume.docx`.
 
 ## Projects gallery
 
@@ -27,7 +27,7 @@ portfolio/
 ├── media/
 │   ├── video/              # web-optimized MP4s used by the page
 │   └── thumbs/             # 1280×720 thumbnail images
-├── 照片_副本.jpg            # hero avatar
+├── photo.jpg               # hero avatar
 ├── resume.docx             # downloadable CV
 ├── video_intro.txt         # source notes the project descriptions came from
 └── *.mp4 / *.mov           # original source recordings (not loaded by the page)
