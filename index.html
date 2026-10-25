@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yiqun Zhang | Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236366f1'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3EYZ%3C/text%3E%3C/svg%3E" />
+  <meta name="description" content="Yiqun Zhang — Computational Data Science at CUHK. Computer vision, real-time graphics, XR/VR, and WebGPU projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Variables ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0a0a0b;
+      --surface:   #131316;
+      --card:      #1c1c21;
+      --border:    #2a2a32;
+      --text:      #e4e4e7;
+      --muted:     #71717a;
+      --accent:    #6366f1;
+      --accent2:   #818cf8;
+      --accent-glow: rgba(99,102,241,.15);
+      --warm:      #f59e0b;
+      --warm-glow: rgba(245,158,11,.08);
+      --green:     #22c55e;
+      --radius:    12px;
+      --radius-sm: 8px;
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent2); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--warm); }
+
+    img, video { max-width: 100%; display: block; }
+
+    /* ── Scrollbar ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ── Navigation ────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,11,.75);
+      backdrop-filter: blur(18px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 800; font-size: 1.1rem; letter-spacing: -.02em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); font-size: .8rem; font-weight: 500;
+      transition: color var(--transition), border-color var(--transition);
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 4px; flex-direction: column; gap: 5px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text);
+      transition: all var(--transition);
+      transform-origin: center;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ── Sections ──────────────────────────────────────────── */
+    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem; font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase; letter-spacing: .2em;
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.4rem);
+      font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 40% 30%, var(--accent-glow), transparent 70%),
+        radial-gradient(ellipse 40% 40% at 70% 70%, var(--warm-glow), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--border);
+      margin: 0 auto 2rem;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      font-size: 2.5rem;
+      color: var(--muted);
+      transition: border-color var(--transition);
+    }
+    .hero-avatar:hover { border-color: var(--accent); }
+    .hero-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+    .hero-greeting {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85rem; color: var(--accent); margin-bottom: .5rem;
+    }
+    .hero-name {
+      font-size: clamp(2.8rem, 7vw, 4.8rem);
+      font-weight: 800; letter-spacing: -.04em;
+      line-height: 1.05; margin-bottom: 1rem;
+    }
+    .hero-name span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2), #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 600px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-tagline strong { color: var(--text); font-weight: 500; }
+    .hero-meta {
+      display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .hero-meta-item {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .85rem; color: var(--muted);
+    }
+    .hero-meta-item svg { width: 16px; height: 16px; fill: var(--accent); }
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 2rem;
+      border-radius: 50px; font-size: .9rem; font-weight: 600;
+      transition: all var(--transition); cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+    }
+    .btn-primary:hover { background: var(--warm); color: #fff; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(245,158,11,.3); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--warm); color: var(--warm); transform: translateY(-3px); }
+
+    /* ── About ─────────────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: .95rem; }
+    .about-text p strong { color: var(--text); }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: border-color var(--transition);
+    }
+    .stat-card:hover { border-color: var(--accent); }
+    .stat-card .num {
+      font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-card .label { font-size: .8rem; color: var(--muted); margin-top: .25rem; }
+
+    /* ── Experience / Research ─────────────────────────────── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), var(--border));
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -2rem; top: .5rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      transform: translateX(-5px);
+      transition: box-shadow var(--transition);
+    }
+    .timeline-item:hover::before { box-shadow: 0 0 0 6px var(--accent-glow); }
+    .timeline-item:first-child::before { box-shadow: 0 0 0 4px var(--accent-glow); }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem; color: var(--accent);
+      margin-bottom: .2rem;
+      letter-spacing: .05em;
+    }
+    .timeline-title {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: .2rem;
+    }
+    .timeline-org {
+      font-size: .9rem; color: var(--muted); margin-bottom: .75rem;
+    }
+    .timeline-desc { color: var(--muted); font-size: .9rem; }
+    .timeline-desc ul { padding-left: 1.2rem; list-style-type: '▸ '; }
+    .timeline-desc li {
+      margin-bottom: .4rem;
+      padding-left: .25rem;
+    }
+    .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      padding: .2rem .7rem;
+      border-radius: 50px;
+      background: var(--accent-glow);
+      color: var(--accent2);
+      border: 1px solid rgba(99,102,241,.2);
+      margin-right: .3rem; margin-top: .5rem;
+      transition: all var(--transition);
+    }
+    .tag:hover { border-color: var(--accent); background: rgba(99,102,241,.25); }
+    .achievement-highlight {
+      display: inline-block;
+      background: rgba(34,197,94,.1);
+      color: var(--green);
+      padding: .15rem .6rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: .85rem;
+    }
+
+    /* ── Projects / Video gallery ──────────────────────────── */
+    .projects-sub {
+      color: var(--muted); font-size: .9rem;
+      margin: -2rem 0 2rem;
+    }
+    .video-filters {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-bottom: 1.75rem;
+    }
+    .filter-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .45rem .9rem;
+      border-radius: 50px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--accent); }
+    .filter-btn.active {
+      background: var(--accent); border-color: var(--accent); color: #fff;
+    }
+    .filter-count { opacity: .6; font-size: .62rem; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2.25rem 1.5rem;
+    }
+    .video-card {
+      display: block; color: var(--text);
+      border-radius: var(--radius);
+      transition: transform var(--transition);
+    }
+    .video-card:hover { color: var(--text); transform: translateY(-4px); }
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 18px rgba(0,0,0,.35);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .video-card:hover .video-thumb,
+    .video-card:focus-visible .video-thumb {
+      border-color: var(--accent);
+      box-shadow: 0 12px 36px var(--accent-glow);
+    }
+    .video-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .55s cubic-bezier(.4,0,.2,1), filter var(--transition);
+    }
+    .video-card:hover .video-thumb img { transform: scale(1.04); filter: brightness(1.08); }
+    .video-thumb::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top, rgba(0,0,0,.55), transparent 45%);
+    }
+    .play-badge {
+      position: absolute; z-index: 1;
+      left: 50%; top: 50%; transform: translate(-50%,-50%) scale(.85);
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(10,10,11,.55);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .play-badge svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+    .video-card:hover .play-badge,
+    .video-card:focus-visible .play-badge { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    .duration-badge {
+      position: absolute; z-index: 1; right: .55rem; bottom: .55rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .66rem; font-weight: 500; letter-spacing: .03em;
+      color: #fff; background: rgba(0,0,0,.82);
+      padding: .12rem .42rem; border-radius: 4px;
+    }
+    .video-info { padding: .85rem .1rem 0; }
+    .video-title {
+      font-size: 1rem; font-weight: 600; line-height: 1.35;
+      margin-bottom: .2rem;
+    }
+    .video-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .66rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--accent2);
+    }
+    .video-desc-short {
+      font-size: .82rem; color: var(--muted);
+      margin-top: .45rem; line-height: 1.55;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .video-empty {
+      grid-column: 1 / -1; text-align: center;
+      color: var(--muted); font-size: .9rem; padding: 3rem 0;
+    }
+
+    /* ── Video modal ───────────────────────────────────────── */
+    .video-modal {
+      position: relative;
+      width: min(980px, calc(100vw - 2rem));
+      max-width: none;
+      max-height: calc(100vh - 2rem);
+      margin: auto;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 30px 90px rgba(0,0,0,.75);
+      overflow: hidden;
+    }
+    .video-modal[open] { animation: modalIn .25s cubic-bezier(.4,0,.2,1); }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(14px) scale(.985); }
+      to   { opacity: 1; transform: none; }
+    }
+    .video-modal::backdrop {
+      background: rgba(4,4,7,.85);
+      backdrop-filter: blur(8px);
+    }
+    .modal-scroll {
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+    .modal-player { position: relative; background: #000; line-height: 0; }
+    .modal-player video {
+      display: block; width: 100%; height: auto;
+      max-height: 70vh; object-fit: contain; background: #000;
+    }
+    .modal-close {
+      position: absolute; z-index: 2; top: .75rem; right: .75rem;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.65);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff; cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .modal-close:hover { background: var(--accent); border-color: var(--accent); }
+    .modal-close svg { width: 16px; height: 16px; fill: currentColor; }
+    .modal-body { padding: 1.5rem 1.75rem 1.75rem; }
+    .modal-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
+    .modal-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .68rem; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--accent2); margin: .35rem 0 .9rem;
+    }
+    .modal-desc { color: var(--muted); font-size: .92rem; line-height: 1.7; }
+    .modal-foot {
+      display: flex; align-items: center; flex-wrap: wrap; gap: .3rem;
+      margin-top: 1.1rem;
+    }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .modal-open-link {
+      margin-left: auto; font-size: .78rem; color: var(--muted);
+      display: inline-flex; align-items: center; gap: .3rem;
+    }
+    .modal-open-link:hover { color: var(--warm); }
+    .modal-open-link svg { width: 14px; height: 14px; fill: currentColor; }
+    body.modal-open { overflow: hidden; }
+
+    /* ── Skills ────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .skill-category {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: border-color var(--transition);
+    }
+    .skill-category:hover { border-color: var(--accent); }
+    .skill-category h3 {
+      font-size: .8rem; font-weight: 600; color: var(--accent2);
+      text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 1rem;
+    }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      font-size: .9rem; color: var(--muted);
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-list li:last-child { border: none; }
+
+    /* ── Awards ────────────────────────────────────────────── */
+    .awards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;
+    }
+    .award-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: all var(--transition);
+    }
+    .award-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .award-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+    .award-title { font-size: 1rem; font-weight: 600; margin-bottom: .25rem; }
+    .award-org { font-size: .8rem; color: var(--muted); }
+    .award-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .7rem; color: var(--accent); margin-top: .5rem;
+    }
+
+    /* ── Contact ───────────────────────────────────────────── */
+    #contact { text-align: center; }
+    .contact-links {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .75rem 1.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 50px; font-size: .9rem; color: var(--text);
+      transition: all var(--transition);
+    }
+    .contact-link:hover { border-color: var(--warm); color: var(--warm); transform: translateY(-2px); }
+    .contact-link svg { width: 18px; height: 18px; fill: currentColor; }
+    .contact-link.cv-btn {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .contact-link.cv-btn:hover {
+      background: var(--warm);
+      border-color: var(--warm);
+      color: #fff;
+    }
+
+    /* ── Footer ────────────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: .75rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Animations ────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in.delay-1 { transition-delay: .1s; }
+    .fade-in.delay-2 { transition-delay: .2s; }
+
+    /* ── Responsive ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: flex; flex-direction: column;
+        position: absolute; top: 60px; left: 0; right: 0;
+        background: rgba(10,10,11,.96);
+        padding: 0 2rem;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        max-height: 0; overflow: hidden;
+        transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s ease;
+        padding: 0 2rem;
+      }
+      .nav-links.open {
+        max-height: 400px;
+        padding: 1.5rem 2rem;
+      }
+      .nav-links a {
+        padding: .6rem 0;
+        border-bottom: 1px solid var(--border);
+        border-bottom-color: transparent;
+      }
+      .nav-links a.active { border-bottom-color: var(--accent); }
+      .nav-toggle { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.25rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .video-modal { width: calc(100vw - 1rem); max-height: calc(100vh - 1rem); }
+      .modal-scroll { max-height: calc(100vh - 1rem); }
+      .modal-body { padding: 1.15rem 1.1rem 1.35rem; }
+      .modal-open-link { margin-left: 0; width: 100%; margin-top: .5rem; }
+      .hero-meta { gap: .75rem; }
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-link { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-name { font-size: 2.4rem; }
+      .hero-tagline { font-size: .95rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">YZ</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#profile" data-section="profile">Profile</a></li>
+    <li><a href="#research" data-section="research">Research</a></li>
+    <li><a href="#projects" data-section="projects">Projects</a></li>
+    <li><a href="#skills" data-section="skills">Skills</a></li>
+    <li><a href="#awards" data-section="awards">Awards</a></li>
+    <li><a href="#contact" data-section="contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-avatar">
+      <img src="./照片_副本.jpg" alt="Yiqun Zhang" />
+    </div>
+    <p class="hero-greeting">Hello, I'm</p>
+    <h1 class="hero-name">Yiqun <span>Zhang</span></h1>
+    <p class="hero-tagline">
+      <strong>Building systems that see, move, and interact</strong> — from 3D rendering engines
+      to multi-modal perception models. Computational Data Science @ CUHK.
+    </p>
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        The Chinese University of Hong Kong
+      </span>
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><path d="M5 13h1v-3c0-1.66 1.34-3 3-3s3 1.34 3 3v3h1c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-4c0-1.1.9-2 2-2zm9.98-7C14.1 4.91 15.89 3.12 18.02 3c.55 0 1 .45 1 1s-.45 1-1 1c-1.38.07-2.5 1.2-2.5 2.5s1.12 2.43 2.5 2.5c.55.06 1 .52 1 1.07s-.45 1-1 1c-2.13-.12-3.92-1.91-3.98-4.07V6h-1v2h-1V6h-1v5c0 2.21 1.79 4 4 4s4-1.79 4-4V8c0-.55-.45-1-1-1z"/></svg>
+        CUHK · Dartmouth Exchange
+      </span>
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-4 10h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+        NTHU Researcher · Summer 2026
+      </span>
+    </div>
+    <div class="hero-cta">
+      <a href="#research" class="btn btn-primary">View Research</a>
+      <a href="#projects" class="btn btn-outline">See Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Profile ────────────────────────────────────────────────── -->
+<section id="profile">
+  <div class="fade-in">
+    <p class="section-label">01 — Profile</p>
+    <h2 class="section-title">Profile</h2>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I'm <strong>Yiqun Zhang</strong>, a senior studying <strong>Computational Data Science</strong>
+        at <strong>The Chinese University of Hong Kong</strong> (CUHK).
+      </p>
+      <p>
+        My work sits at the intersection of <strong>computer vision</strong>, <strong>3D graphics</strong>,
+        and <strong>interactive systems</strong>. I've spent the past two years building
+        systems that bridge graphics programming and machine learning — from
+        writing a complete WebGPU rendering pipeline from scratch to researching
+        physical property estimation for retail products using multi-modal neural networks.
+      </p>
+      <p>
+        In Summer 2026, I conducted research at
+        <strong>National Tsing Hua University (NTHU)</strong> in Taiwan,
+        where I improved PSViT — a world model-inspired Vision Transformer for estimating
+        physical mass from 3D point clouds and multi-view images.
+      </p>
+      <p>
+        I also spent Fall 2025 as an exchange student at
+        <strong>Dartmouth College</strong>, where I built VR scenes and learned
+        real-time graphics programming with WebGPU and Unity.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="num">3.3</div>
+        <div class="label">CGPA / 4.0</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">7.5</div>
+        <div class="label">IELTS Score</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">8</div>
+        <div class="label">Project Demos</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">2</div>
+        <div class="label">Research Experiences</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Research ──────────────────────────────────────────────── -->
+<section id="research">
+  <div class="fade-in">
+    <p class="section-label">02 — Research</p>
+    <h2 class="section-title">Research Experience</h2>
+  </div>
+  <div class="timeline fade-in">
+
+    <!-- NTHU -->
+    <div class="timeline-item">
+      <div class="timeline-date">Summer 2026</div>
+      <div class="timeline-title">Research Assistant — PSViT Improvement</div>
+      <div class="timeline-org">National Tsing Hua University (NTHU), Hsinchu, Taiwan</div>
+      <div class="timeline-desc">
+        <ul>
+          <li>
+            <strong>Architected</strong> a KMeans-based feature-space pooling module that replaces global mean/max in PSViT's GeometryBranch — <span class="achievement-highlight">5.6% ADE improvement</span> (4.081 → 4.322) on ABO-500 benchmark.
+          </li>
+          <li>
+            <strong>Pioneered</strong> a point-wise material soft-weighting pipeline (Path B) using CLIP to project local visual patches onto material text embeddings, generating per-point density/thickness fields for EdgeConv input.
+          </li>
+          <li>
+            <strong>Built</strong> a full interpretability suite — attention heatmaps, linear probing, correlation profiles, and t-SNE — to analyze cross-modal attention between visual and geometric features.
+          </li>
+          <li>
+            <strong>Investigated</strong> PartField part-level fusion with DGCNN + masked DINO per spatial cluster, conducting ablation studies on variance regularization strategies.
+          </li>
+        </ul>
+        <div>
+          <span class="tag">PyTorch</span>
+          <span class="tag">DINOv2</span>
+          <span class="tag">DGCNN</span>
+          <span class="tag">Vision Transformer</span>
+          <span class="tag">3D Point Clouds</span>
+          <span class="tag">CLIP</span>
+          <span class="tag">ABO-500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gangjutong -->
+    <div class="timeline-item">
+      <div class="timeline-date">Jul – Aug 2025</div>
+      <div class="timeline-title">Software Automation Testing Intern</div>
+      <div class="timeline-org">Gangjutong (Beijing) Technology Co., Ltd, Beijing, China</div>
+      <div class="timeline-desc">
+        <ul>
+          <li><strong>Developed</strong> and executed automated test scripts, improving regression testing efficiency by <span class="achievement-highlight">~40%</span>.</li>
+          <li><strong>Generated</strong> detailed test reports using Allure framework, enhancing cross-team visibility of test results.</li>
+        </ul>
+        <div>
+          <span class="tag">Python</span>
+          <span class="tag">Automation Testing</span>
+          <span class="tag">Allure</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Projects ──────────────────────────────────────────────── -->
+<section id="projects">
+  <div class="fade-in">
+    <p class="section-label">03 — Projects</p>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="projects-sub">XR games, real-time graphics, and visual effects. Click any thumbnail to play the full demo.</p>
+  </div>
+  <div class="fade-in">
+    <div class="video-filters" id="videoFilters" role="group" aria-label="Filter projects by category"></div>
+    <div class="projects-grid" id="videoGrid"></div>
+  </div>
+  <noscript>
+    <p class="projects-sub">
+      Enable JavaScript for the video gallery, or watch the demos directly:
+      <a href="./media/video/xr-basketball.mp4">XR Basketball</a>,
+      <a href="./media/video/thai-house.mp4">The Thai House</a>,
+      <a href="./media/video/webgpu-lego.mp4">WebGPU LEGO Animals</a>,
+      <a href="./media/video/stencil-buffer.mp4">Stencil Buffer Box</a>,
+      <a href="./media/video/pool-ball.mp4">Pool Ball</a>,
+      <a href="./media/video/pickup-and-run.mp4">Pick-Up and Run</a>,
+      <a href="./media/video/webgpu-lighting.mp4">WebGPU Phong Lighting</a>,
+      <a href="./media/video/vfx-demo.mp4">DXR VFX Demo</a>.
+    </p>
+  </noscript>
+</section>
+
+<!-- ── Video modal ───────────────────────────────────────────── -->
+<dialog class="video-modal" id="videoModal" aria-labelledby="modalTitle">
+  <div class="modal-scroll">
+    <div class="modal-player">
+      <video id="modalVideo" controls playsinline preload="none"></video>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close video">
+        <svg viewBox="0 0 24 24"><path d="M18.3 5.71 12 12.01l-6.3-6.3-1.41 1.41 6.3 6.3-6.3 6.3 1.41 1.41 6.3-6.3 6.3 6.3 1.41-1.41-6.3-6.3 6.3-6.3z"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-meta" id="modalMeta"></p>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-foot">
+        <div class="modal-tags" id="modalTags"></div>
+        <a class="modal-open-link" id="modalOpen" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7zM19 19H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7z"/></svg>
+          Open in new tab
+        </a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- ── Skills ──────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="fade-in">
+    <p class="section-label">04 — Skills</p>
+    <h2 class="section-title">Technical Skills</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-category">
+      <h3>Languages</h3>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>C / C++</li>
+        <li>C#</li>
+        <li>R</li>
+        <li>SAS</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <h3>Graphics &amp; VR</h3>
+      <ul class="skill-list">
+        <li>WebGPU / WGSL</li>
+        <li>Unity</li>
+        <li>OpenGL</li>
+        <li>3D Math / Linear Algebra</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <h3>ML &amp; Data Science</h3>
+      <ul class="skill-list">
+        <li>PyTorch</li>
+        <li>DINOv2 / CLIP</li>
+        <li>3D Point Clouds (Open3D)</li>
+        <li>Statistics / Data Analysis</li>
+      </ul>
+    </div>
+    <div class="skill-category">
+      <h3>Tools &amp; Other</h3>
+      <ul class="skill-list">
+        <li>Git / GitHub</li>
+        <li>Linux / Bash</li>
+        <li>MS Office / Xmind</li>
+        <li>English (IELTS 7.5)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── Awards ──────────────────────────────────────────────── -->
+<section id="awards">
+  <div class="fade-in">
+    <p class="section-label">05 — Awards</p>
+    <h2 class="section-title">Awards &amp; Achievements</h2>
+  </div>
+  <div class="awards-grid fade-in">
+    <div class="award-card">
+      <div class="award-icon">🏅</div>
+      <div class="award-title">Talent Development Scholarship</div>
+      <div class="award-org">The Chinese University of Hong Kong</div>
+      <div class="award-year">2024</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🏅</div>
+      <div class="award-title">CDAS Scholarship</div>
+      <div class="award-org">The Chinese University of Hong Kong</div>
+      <div class="award-year">2023</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🥇</div>
+      <div class="award-title">First Prize — Olympic Maths Competition</div>
+      <div class="award-org">Jiangsu Mathematical Society</div>
+      <div class="award-year">2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="fade-in">
+    <p class="section-label">06 — Contact</p>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="hero-tagline" style="margin-bottom:0; max-width:500px; margin-left:auto; margin-right:auto;">
+      I'm always open to discussing research, collaborations, or new opportunities.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:1155210992@link.cuhk.edu.hk" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+      <a href="tel:+85297471479" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +852 9747 1479
+      </a>
+      <a href="tel:+8615751341132" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        +86 157 5134 1132
+      </a>
+      <a href="./resume.docx" class="contact-link cv-btn" download>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Yiqun Zhang. Built with care.</p>
+</footer>
+
+<script>
+  // ── Mobile nav toggle ──────────────────────────────────
+  const toggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(link =>
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  // ── Scroll fade-in ─────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Nav highlight on scroll ────────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const navObserver = new IntersectionObserver((entries) => {
+    let activeId = null;
+    let maxRatio = 0;
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio > maxRatio) {
+        maxRatio = e.intersectionRatio;
+        activeId = e.target.id;
+      }
+    });
+    navAnchors.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('data-section') === activeId);
+    });
+  }, { threshold: [0.1, 0.3, 0.6], rootMargin: '-60px 0px -20% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // ── Project video gallery ──────────────────────────────
+  const PROJECTS = [
+    {
+      slug: 'xr-basketball',
+      title: 'XR Basketball Arena',
+      category: 'XR',
+      engine: 'Unity · Meta Quest 3',
+      duration: '2:35',
+      thumb: './media/thumbs/xr-basketball.jpg',
+      video: './media/video/xr-basketball.mp4',
+      meta: 'Unity · Meta Quest 3 · 2:35 — stencil-buffer portal · cloth-simulated net',
+      desc: 'A mixed-reality basketball game that starts in the real world: a virtual ball floats in the room, and grabbing it — the trigger — opens a stadium corridor built with the stencil-buffer technique. Locomotion lets the player walk into the virtual scene, then shoot and tap the ball on a full court whose net uses cloth simulation with custom constraints.',
+      tags: ['Unity', 'Meta Quest 3', 'XR / AR', 'Stencil Buffer', 'Cloth Simulation', 'Locomotion']
+    },
+    {
+      slug: 'thai-house',
+      title: 'The Thai House',
+      category: 'XR',
+      engine: 'Unity · Meta Quest 3',
+      duration: '1:49',
+      thumb: './media/thumbs/thai-house.jpg',
+      video: './media/video/thai-house.mp4',
+      meta: 'Unity · Meta Quest 3 · 1:49 — team of three · full VR game',
+      desc: 'A VR horror game made with two teammates. Players follow a creepy cat into a haunted Thai house, find a key hidden in a pot, search boxes of different sizes and positions for the red paper, and stick it on the door to return to normal. Trigger volumes, keyframed animations, and a global volume build the atmosphere.',
+      tags: ['Unity', 'Meta Quest 3', 'VR', 'Horror', 'Animation', 'Trigger Volumes', 'Global Volume']
+    },
+    {
+      slug: 'webgpu-lego',
+      title: 'WebGPU LEGO Animals',
+      category: 'WebGPU',
+      engine: 'WebGPU · WGSL · JavaScript',
+      duration: '1:11',
+      thumb: './media/thumbs/webgpu-lego.jpg',
+      video: './media/video/webgpu-lego.mp4',
+      meta: 'WebGPU · WGSL · JavaScript · 1:11 — hand-written rendering pipeline',
+      desc: 'A WebGPU animal-animation project written from scratch. Load the tiger or crocodile, watch the whole model assemble brick by brick, trigger bounce and open-mouth animations, and switch to wireframe to inspect the brick structure. Includes OBJ mesh loading and a hand-written vertex/fragment pipeline.',
+      tags: ['WebGPU', 'WGSL', 'JavaScript', '3D Animation', 'OBJ Loading']
+    },
+    {
+      slug: 'stencil-buffer',
+      title: 'Stencil Buffer Box',
+      category: 'XR',
+      engine: 'Unity · XR',
+      duration: '0:39',
+      thumb: './media/thumbs/stencil-buffer.jpg',
+      video: './media/video/stencil-buffer.mp4',
+      meta: 'Unity · XR · 0:39 — Dartmouth XR, Fall 2025',
+      desc: 'An AR demo of the stencil-buffer technique, built in the Dartmouth XR course (Fall 2025). A virtual box is anchored to a real wall and its glowing, layered interior is revealed through the box\'s stencil mask, with a hand-shaped panel controlling the scene.',
+      tags: ['Unity', 'XR / AR', 'Stencil Buffer', 'Dartmouth XR', 'Interaction Design']
+    },
+    {
+      slug: 'pool-ball',
+      title: 'Pool Ball',
+      category: 'Games',
+      engine: 'Unity · C#',
+      duration: '0:59',
+      thumb: './media/thumbs/pool-ball.jpg',
+      video: './media/video/pool-ball.mp4',
+      meta: 'Unity · C# · 0:59 — custom collision tuning',
+      desc: 'A simplified billiards game built from scratch. Instead of a cue stick, arrow buttons steer the cue ball directly. Potted balls float above the table and light up when clicked, and most of the work went into stable, believable collision physics.',
+      tags: ['Unity', 'C#', 'Rigid-body Physics', 'Game Dev']
+    },
+    {
+      slug: 'pickup-and-run',
+      title: 'Pick-Up and Run',
+      category: 'Games',
+      engine: 'Unity · C#',
+      duration: '0:33',
+      thumb: './media/thumbs/pickup-and-run.jpg',
+      video: './media/video/pickup-and-run.mp4',
+      meta: 'Unity · C# · 0:33 — collect-all portal objective',
+      desc: 'A small 3D running and pick-up game built in Unity. Explore the scene, collect every scattered object, and the final portal opens to let the player through.',
+      tags: ['Unity', 'C#', 'Game Design', 'Level Design']
+    },
+    {
+      slug: 'webgpu-lighting',
+      title: 'WebGPU Phong Lighting',
+      category: 'WebGPU',
+      engine: 'WebGPU · WGSL · JavaScript',
+      duration: '0:44',
+      thumb: './media/thumbs/webgpu-lighting.jpg',
+      video: './media/video/webgpu-lighting.mp4',
+      meta: 'WebGPU · WGSL · JavaScript · 0:44 — real-time Phong controls',
+      desc: 'A lighting-theory playground for computer graphics. Adjust ambient, diffuse, and specular coefficients, shininess, and light distance, and watch the Phong model update the sphere in real time.',
+      tags: ['WebGPU', 'WGSL', 'Phong Lighting', 'Shaders']
+    },
+    {
+      slug: 'vfx-demo',
+      title: 'DXR VFX Demo',
+      category: 'VFX',
+      engine: 'Unity · VFX',
+      duration: '0:03',
+      thumb: './media/thumbs/vfx-demo.jpg',
+      video: './media/video/vfx-demo.mp4',
+      meta: 'Unity · VFX · 0:03 — particle logo destruction',
+      desc: 'A short visual-effects study: a DXR logo fractures into thousands of particles and dissolves over a cloudscape.',
+      tags: ['Unity', 'VFX', 'Particle Systems', 'Real-time Rendering']
+    }
+  ];
+
+  const CATEGORIES = [
+    { key: 'all', label: 'All' },
+    { key: 'XR', label: 'XR & VR' },
+    { key: 'Games', label: 'Games' },
+    { key: 'WebGPU', label: 'WebGPU' },
+    { key: 'VFX', label: 'VFX' }
+  ];
+
+  const grid = document.getElementById('videoGrid');
+  const filterBar = document.getElementById('videoFilters');
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalTags = document.getElementById('modalTags');
+  const modalOpen = document.getElementById('modalOpen');
+  const modalClose = document.getElementById('modalClose');
+  let activeFilter = 'all';
+  let lastFocused = null;
+
+  function renderGallery() {
+    const items = activeFilter === 'all'
+      ? PROJECTS
+      : PROJECTS.filter(p => p.category === activeFilter);
+
+    grid.innerHTML = '';
+    items.forEach(p => {
+      const card = document.createElement('a');
+      card.className = 'video-card';
+      card.href = p.video;
+      card.dataset.slug = p.slug;
+      card.setAttribute('aria-label', 'Play ' + p.title + ' (' + p.duration + ')');
+      card.innerHTML =
+        '<div class="video-thumb">' +
+          '<img src="' + p.thumb + '" alt="" loading="lazy" width="1280" height="720">' +
+          '<span class="play-badge" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+          '</span>' +
+          '<span class="duration-badge">' + p.duration + '</span>' +
+        '</div>' +
+        '<div class="video-info">' +
+          '<h3 class="video-title">' + p.title + '</h3>' +
+          '<p class="video-sub">' + p.engine + '</p>' +
+          '<p class="video-desc-short">' + p.desc + '</p>' +
+        '</div>';
+      card.addEventListener('click', e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        openVideo(p, card);
+      });
+      grid.appendChild(card);
+    });
+
+    if (!items.length) {
+      grid.innerHTML = '<p class="video-empty">No projects in this category yet.</p>';
+    }
+  }
+
+  function openVideo(p, trigger) {
+    lastFocused = trigger || document.activeElement;
+    modalVideo.src = p.video;
+    modalVideo.poster = p.thumb;
+    modalTitle.textContent = p.title;
+    modalMeta.textContent = p.meta;
+    modalDesc.textContent = p.desc;
+    modalTags.innerHTML = p.tags.map(t => '<span class="tag">' + t + '</span>').join('');
+    modalOpen.href = p.video;
+    modal.showModal();
+    document.body.classList.add('modal-open');
+    modalVideo.play().catch(() => {});
+  }
+
+  modalClose.addEventListener('click', () => modal.close());
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+  modal.addEventListener('close', () => {
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.removeAttribute('poster');
+    modalVideo.load();
+    document.body.classList.remove('modal-open');
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  });
+
+  CATEGORIES.forEach(cat => {
+    const count = cat.key === 'all'
+      ? PROJECTS.length
+      : PROJECTS.filter(p => p.category === cat.key).length;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'filter-btn' + (cat.key === activeFilter ? ' active' : '');
+    btn.dataset.filter = cat.key;
+    btn.setAttribute('aria-pressed', cat.key === activeFilter ? 'true' : 'false');
+    btn.innerHTML = cat.label + '<span class="filter-count">' + count + '</span>';
+    btn.addEventListener('click', () => {
+      activeFilter = cat.key;
+      filterBar.querySelectorAll('.filter-btn').forEach(b => {
+        const on = b.dataset.filter === activeFilter;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      renderGallery();
+    });
+    filterBar.appendChild(btn);
+  });
+
+  renderGallery();
+
+  // ── Smooth scroll for nav links ────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>

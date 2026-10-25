@@ -1,0 +1,18 @@
+basketball_game.mp4: This is a basketball game built in XR space in Unity. First the player is in the real world, or an AR world because there's a virtual basketball in the real scene. When you grab the ball, which serves as a trigger object, there appears to be a corridor in a stadium, and I use locomotion technique here so that player can actually walk in the virtual scene by simply control the controller. And the corridor uses the stencil buffer technique. Then you can play the basketball game in the stadium like shooting or tapping the ball. For the basket net I used the cloth material and add the cloth constraints on it to make it act naturally. And since the stadium is a really big object file, I also used a lot of skills and debugging technologies to keep the game fluent.\
+\
+Pick-up and run.mp4 is a small running and pick-up game in a 3D scene in Unity. The player must obtained all the objects to get to the final portal.\
+\
+Pool ball game.mp4 is a simplified billiards game built all by myself to play the pool ball. Instead of using a stick to control the white ball, players can directly control the write ball using the arrow buttons. After each ball goals, it will automatically float in the air, and it will light up after you click it. I spent a lot of work on the physical simulation of the collision.\
+\
+Shakin_vfx2.mp4 is a visual effects demo made by myself.\
+\
+stencil buffer box.mp4 is a demo for the stencil buffer technique in an AR scene.\
+\
+vr_project_Thaihouse.mp4 is a haunting game I made with other two group mates. The whole vr scene is that you are following a creepy cat into a haunting Thai house, and you need to find a red paper to stick on the door to get back to normal. The red paper is stored in one box among different sizes and locations of boxes. A key stored in a pot is essential to open the boxes. Techniques of trigger volumes(for all the trigger boxes), animation(the walking cat, the opening box, the red paper and so on), global volume(for the haunting atmosphere) and so on are widely used in this game.\
+\
+WebGPU animal animation.mov is an animal animation demo for a WebGPU project all by myself from scratch that can show animation of lego bricks and the assembling animation of the whole object.\
+\
+WebGPU lighting.mov is a demo for lighting theory in computer graphics that you can control the ambient, diffuse, specular light and shininess and the light distance to find the corresponding effect of tuning one of the parameters.\
+\
+Besides the last two WebGPU projects, the other projects are all built in Unity 3D. The VR games are built using Meta quest 3.\
+\

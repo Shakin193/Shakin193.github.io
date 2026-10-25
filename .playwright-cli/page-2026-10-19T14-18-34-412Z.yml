@@ -1,0 +1,311 @@
+- generic [active] [ref=e1]:
+  - navigation "Main navigation" [ref=e2]:
+    - generic [ref=e3]: YZ
+    - list [ref=e4]:
+      - listitem [ref=e5]:
+        - link "Profile" [ref=e6] [cursor=pointer]:
+          - /url: "#profile"
+      - listitem [ref=e7]:
+        - link "Research" [ref=e8] [cursor=pointer]:
+          - /url: "#research"
+      - listitem [ref=e9]:
+        - link "Projects" [ref=e10] [cursor=pointer]:
+          - /url: "#projects"
+      - listitem [ref=e11]:
+        - link "Skills" [ref=e12] [cursor=pointer]:
+          - /url: "#skills"
+      - listitem [ref=e13]:
+        - link "Awards" [ref=e14] [cursor=pointer]:
+          - /url: "#awards"
+      - listitem [ref=e15]:
+        - link "Contact" [ref=e16] [cursor=pointer]:
+          - /url: "#contact"
+    - button "Toggle menu" [ref=e17] [cursor=pointer]
+  - generic [ref=e22]:
+    - img "Yiqun Zhang" [ref=e24]
+    - paragraph [ref=e25]: Hello, I'm
+    - heading "Yiqun Zhang" [level=1] [ref=e26]
+    - paragraph [ref=e27]:
+      - strong [ref=e28]: Building systems that see, move, and interact
+      - text: — from 3D rendering engines to multi-modal perception models. Computational Data Science @ CUHK.
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - img [ref=e31]
+        - text: The Chinese University of Hong Kong
+      - generic [ref=e33]:
+        - img [ref=e34]
+        - text: CUHK · Dartmouth Exchange
+      - generic [ref=e36]:
+        - img [ref=e37]
+        - text: NTHU Researcher · Summer 2026
+    - generic [ref=e39]:
+      - link "View Research" [ref=e40] [cursor=pointer]:
+        - /url: "#research"
+      - link "See Projects" [ref=e41] [cursor=pointer]:
+        - /url: "#projects"
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - paragraph [ref=e44]: 01 — Profile
+      - heading "Profile" [level=2] [ref=e45]
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - paragraph [ref=e48]:
+          - text: I'm
+          - strong [ref=e49]: Yiqun Zhang
+          - text: ", a senior studying"
+          - strong [ref=e50]: Computational Data Science
+          - text: at
+          - strong [ref=e51]: The Chinese University of Hong Kong
+          - text: (CUHK).
+        - paragraph [ref=e52]:
+          - text: My work sits at the intersection of
+          - strong [ref=e53]: computer vision
+          - text: ","
+          - strong [ref=e54]: 3D graphics
+          - text: ", and"
+          - strong [ref=e55]: interactive systems
+          - text: . I've spent the past two years building systems that bridge graphics programming and machine learning — from writing a complete WebGPU rendering pipeline from scratch to researching physical property estimation for retail products using multi-modal neural networks.
+        - paragraph [ref=e56]:
+          - text: In Summer 2026, I conducted research at
+          - strong [ref=e57]: National Tsing Hua University (NTHU)
+          - text: in Taiwan, where I improved PSViT — a world model-inspired Vision Transformer for estimating physical mass from 3D point clouds and multi-view images.
+        - paragraph [ref=e58]:
+          - text: I also spent Fall 2025 as an exchange student at
+          - strong [ref=e59]: Dartmouth College
+          - text: ", where I built VR scenes and learned real-time graphics programming with WebGPU and Unity."
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]: "3.3"
+          - generic [ref=e63]: CGPA / 4.0
+        - generic [ref=e64]:
+          - generic [ref=e65]: "7.5"
+          - generic [ref=e66]: IELTS Score
+        - generic [ref=e67]:
+          - generic [ref=e68]: "8"
+          - generic [ref=e69]: Project Demos
+        - generic [ref=e70]:
+          - generic [ref=e71]: "2"
+          - generic [ref=e72]: Research Experiences
+  - generic [ref=e73]:
+    - generic [ref=e74]:
+      - paragraph [ref=e75]: 02 — Research
+      - heading "Research Experience" [level=2] [ref=e76]
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: Summer 2026
+        - generic [ref=e80]: Research Assistant — PSViT Improvement
+        - generic [ref=e81]: National Tsing Hua University (NTHU), Hsinchu, Taiwan
+        - generic [ref=e82]:
+          - list [ref=e83]:
+            - listitem [ref=e84]:
+              - strong [ref=e85]: Architected
+              - text: a KMeans-based feature-space pooling module that replaces global mean/max in PSViT's GeometryBranch —
+              - generic [ref=e86]: 5.6% ADE improvement
+              - text: (4.081 → 4.322) on ABO-500 benchmark.
+            - listitem [ref=e87]:
+              - strong [ref=e88]: Pioneered
+              - text: a point-wise material soft-weighting pipeline (Path B) using CLIP to project local visual patches onto material text embeddings, generating per-point density/thickness fields for EdgeConv input.
+            - listitem [ref=e89]:
+              - strong [ref=e90]: Built
+              - text: a full interpretability suite — attention heatmaps, linear probing, correlation profiles, and t-SNE — to analyze cross-modal attention between visual and geometric features.
+            - listitem [ref=e91]:
+              - strong [ref=e92]: Investigated
+              - text: PartField part-level fusion with DGCNN + masked DINO per spatial cluster, conducting ablation studies on variance regularization strategies.
+          - generic [ref=e93]:
+            - generic [ref=e94]: PyTorch
+            - generic [ref=e95]: DINOv2
+            - generic [ref=e96]: DGCNN
+            - generic [ref=e97]: Vision Transformer
+            - generic [ref=e98]: 3D Point Clouds
+            - generic [ref=e99]: CLIP
+            - generic [ref=e100]: ABO-500
+      - generic [ref=e101]:
+        - generic [ref=e102]: Jul – Aug 2025
+        - generic [ref=e103]: Software Automation Testing Intern
+        - generic [ref=e104]: Gangjutong (Beijing) Technology Co., Ltd, Beijing, China
+        - generic [ref=e105]:
+          - list [ref=e106]:
+            - listitem [ref=e107]:
+              - strong [ref=e108]: Developed
+              - text: and executed automated test scripts, improving regression testing efficiency by
+              - generic [ref=e109]: ~40%
+              - text: .
+            - listitem [ref=e110]:
+              - strong [ref=e111]: Generated
+              - text: detailed test reports using Allure framework, enhancing cross-team visibility of test results.
+          - generic [ref=e112]:
+            - generic [ref=e113]: Python
+            - generic [ref=e114]: Automation Testing
+            - generic [ref=e115]: Allure
+  - generic [ref=e116]:
+    - generic [ref=e117]:
+      - paragraph [ref=e118]: 03 — Projects
+      - heading "Selected Projects" [level=2] [ref=e119]
+      - paragraph [ref=e120]: XR games, real-time graphics, and visual effects. Click any thumbnail to play the full demo.
+    - generic [ref=e121]:
+      - group "Filter projects by category" [ref=e122]:
+        - button "All 8" [pressed] [ref=e123] [cursor=pointer]:
+          - text: All
+          - generic [ref=e124]: "8"
+        - button "XR & VR 3" [ref=e125] [cursor=pointer]:
+          - text: XR & VR
+          - generic [ref=e126]: "3"
+        - button "Games 2" [ref=e127] [cursor=pointer]:
+          - text: Games
+          - generic [ref=e128]: "2"
+        - button "WebGPU 2" [ref=e129] [cursor=pointer]:
+          - text: WebGPU
+          - generic [ref=e130]: "2"
+        - button "VFX 1" [ref=e131] [cursor=pointer]:
+          - text: VFX
+          - generic [ref=e132]: "1"
+      - generic [ref=e133]:
+        - link "Play XR Basketball Arena (2:35)" [ref=e134] [cursor=pointer]:
+          - /url: ./media/video/xr-basketball.mp4
+          - generic [ref=e135]:
+            - img [ref=e137]
+            - generic [ref=e139]: 2:35
+          - generic [ref=e140]:
+            - heading "XR Basketball Arena" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Unity · Meta Quest 3
+            - paragraph [ref=e143]: "A mixed-reality basketball game that starts in the real world: a virtual ball floats in the room, and grabbing it — the trigger — opens a stadium corridor built with the stencil-buffer technique. Locomotion lets the player walk into the virtual scene, then shoot and tap the ball on a full court whose net uses cloth simulation with custom constraints."
+        - link "Play The Thai House (1:49)" [ref=e144] [cursor=pointer]:
+          - /url: ./media/video/thai-house.mp4
+          - generic [ref=e145]:
+            - img [ref=e147]
+            - generic [ref=e149]: 1:49
+          - generic [ref=e150]:
+            - heading "The Thai House" [level=3] [ref=e151]
+            - paragraph [ref=e152]: Unity · Meta Quest 3
+            - paragraph [ref=e153]: A VR horror game made with two teammates. Players follow a creepy cat into a haunted Thai house, find a key hidden in a pot, search boxes of different sizes and positions for the red paper, and stick it on the door to return to normal. Trigger volumes, keyframed animations, and a global volume build the atmosphere.
+        - link "Play WebGPU LEGO Animals (1:11)" [ref=e154] [cursor=pointer]:
+          - /url: ./media/video/webgpu-lego.mp4
+          - generic [ref=e155]:
+            - img [ref=e157]
+            - generic [ref=e159]: 1:11
+          - generic [ref=e160]:
+            - heading "WebGPU LEGO Animals" [level=3] [ref=e161]
+            - paragraph [ref=e162]: WebGPU · WGSL · JavaScript
+            - paragraph [ref=e163]: A WebGPU animal-animation project written from scratch. Load the tiger or crocodile, watch the whole model assemble brick by brick, trigger bounce and open-mouth animations, and switch to wireframe to inspect the brick structure. Includes OBJ mesh loading and a hand-written vertex/fragment pipeline.
+        - link "Play Stencil Buffer Box (0:39)" [ref=e164] [cursor=pointer]:
+          - /url: ./media/video/stencil-buffer.mp4
+          - generic [ref=e165]:
+            - img [ref=e167]
+            - generic [ref=e169]: 0:39
+          - generic [ref=e170]:
+            - heading "Stencil Buffer Box" [level=3] [ref=e171]
+            - paragraph [ref=e172]: Unity · XR
+            - paragraph [ref=e173]: An AR demo of the stencil-buffer technique, built in the Dartmouth XR course (Fall 2025). A virtual box is anchored to a real wall and its glowing, layered interior is revealed through the box's stencil mask, with a hand-shaped panel controlling the scene.
+        - link "Play Pool Ball (0:59)" [ref=e174] [cursor=pointer]:
+          - /url: ./media/video/pool-ball.mp4
+          - generic [ref=e175]:
+            - img [ref=e177]
+            - generic [ref=e179]: 0:59
+          - generic [ref=e180]:
+            - heading "Pool Ball" [level=3] [ref=e181]
+            - paragraph [ref=e182]: Unity · C#
+            - paragraph [ref=e183]: A simplified billiards game built from scratch. Instead of a cue stick, arrow buttons steer the cue ball directly. Potted balls float above the table and light up when clicked, and most of the work went into stable, believable collision physics.
+        - link "Play Pick-Up and Run (0:33)" [ref=e184] [cursor=pointer]:
+          - /url: ./media/video/pickup-and-run.mp4
+          - generic [ref=e185]:
+            - img [ref=e187]
+            - generic [ref=e189]: 0:33
+          - generic [ref=e190]:
+            - heading "Pick-Up and Run" [level=3] [ref=e191]
+            - paragraph [ref=e192]: Unity · C#
+            - paragraph [ref=e193]: A small 3D running and pick-up game built in Unity. Explore the scene, collect every scattered object, and the final portal opens to let the player through.
+        - link "Play WebGPU Phong Lighting (0:44)" [ref=e194] [cursor=pointer]:
+          - /url: ./media/video/webgpu-lighting.mp4
+          - generic [ref=e195]:
+            - img [ref=e197]
+            - generic [ref=e199]: 0:44
+          - generic [ref=e200]:
+            - heading "WebGPU Phong Lighting" [level=3] [ref=e201]
+            - paragraph [ref=e202]: WebGPU · WGSL · JavaScript
+            - paragraph [ref=e203]: A lighting-theory playground for computer graphics. Adjust ambient, diffuse, and specular coefficients, shininess, and light distance, and watch the Phong model update the sphere in real time.
+        - link "Play DXR VFX Demo (0:03)" [ref=e204] [cursor=pointer]:
+          - /url: ./media/video/vfx-demo.mp4
+          - generic [ref=e205]:
+            - img [ref=e207]
+            - generic [ref=e209]: 0:03
+          - generic [ref=e210]:
+            - heading "DXR VFX Demo" [level=3] [ref=e211]
+            - paragraph [ref=e212]: Unity · VFX
+            - paragraph [ref=e213]: "A short visual-effects study: a DXR logo fractures into thousands of particles and dissolves over a cloudscape."
+  - generic [ref=e214]:
+    - generic [ref=e215]:
+      - paragraph [ref=e216]: 04 — Skills
+      - heading "Technical Skills" [level=2] [ref=e217]
+    - generic [ref=e218]:
+      - generic [ref=e219]:
+        - heading "Languages" [level=3] [ref=e220]
+        - list [ref=e221]:
+          - listitem [ref=e222]: Python
+          - listitem [ref=e223]: C / C++
+          - listitem [ref=e224]: C#
+          - listitem [ref=e225]: R
+          - listitem [ref=e226]: SAS
+      - generic [ref=e227]:
+        - heading "Graphics & VR" [level=3] [ref=e228]
+        - list [ref=e229]:
+          - listitem [ref=e230]: WebGPU / WGSL
+          - listitem [ref=e231]: Unity
+          - listitem [ref=e232]: OpenGL
+          - listitem [ref=e233]: 3D Math / Linear Algebra
+      - generic [ref=e234]:
+        - heading "ML & Data Science" [level=3] [ref=e235]
+        - list [ref=e236]:
+          - listitem [ref=e237]: PyTorch
+          - listitem [ref=e238]: DINOv2 / CLIP
+          - listitem [ref=e239]: 3D Point Clouds (Open3D)
+          - listitem [ref=e240]: Statistics / Data Analysis
+      - generic [ref=e241]:
+        - heading "Tools & Other" [level=3] [ref=e242]
+        - list [ref=e243]:
+          - listitem [ref=e244]: Git / GitHub
+          - listitem [ref=e245]: Linux / Bash
+          - listitem [ref=e246]: MS Office / Xmind
+          - listitem [ref=e247]: English (IELTS 7.5)
+  - generic [ref=e248]:
+    - generic [ref=e249]:
+      - paragraph [ref=e250]: 05 — Awards
+      - heading "Awards & Achievements" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: 🏅
+        - generic [ref=e255]: Talent Development Scholarship
+        - generic [ref=e256]: The Chinese University of Hong Kong
+        - generic [ref=e257]: "2024"
+      - generic [ref=e258]:
+        - generic [ref=e259]: 🏅
+        - generic [ref=e260]: CDAS Scholarship
+        - generic [ref=e261]: The Chinese University of Hong Kong
+        - generic [ref=e262]: "2023"
+      - generic [ref=e263]:
+        - generic [ref=e264]: 🥇
+        - generic [ref=e265]: First Prize — Olympic Maths Competition
+        - generic [ref=e266]: Jiangsu Mathematical Society
+        - generic [ref=e267]: "2022"
+  - generic [ref=e269]:
+    - paragraph [ref=e270]: 06 — Contact
+    - heading "Get in Touch" [level=2] [ref=e271]
+    - paragraph [ref=e272]: I'm always open to discussing research, collaborations, or new opportunities.
+    - generic [ref=e273]:
+      - link "Email" [ref=e274] [cursor=pointer]:
+        - /url: mailto:1155210992@link.cuhk.edu.hk
+        - img [ref=e275]
+        - text: Email
+      - link "+852 9747 1479" [ref=e277] [cursor=pointer]:
+        - /url: tel:+85297471479
+        - img [ref=e278]
+        - text: +852 9747 1479
+      - link "+86 157 5134 1132" [ref=e280] [cursor=pointer]:
+        - /url: tel:+8615751341132
+        - img [ref=e281]
+        - text: +86 157 5134 1132
+      - link "Download CV" [ref=e283] [cursor=pointer]:
+        - /url: ./resume.docx
+        - img [ref=e284]
+        - text: Download CV
+  - contentinfo [ref=e286]:
+    - paragraph [ref=e287]: © 2026 Yiqun Zhang. Built with care.
