@@ -83,7 +83,7 @@ Remove a project by deleting its object. Filter counts update automatically.
 | Projects / videos | `PROJECTS` array in the `<script>` block |
 | Project categories | `CATEGORIES` array (keep `key` in sync with each project's `category`) |
 | Color scheme | CSS variables in `:root` at the top of `<style>` |
-| Photo | `src="./照片_副本.jpg"` in `.hero-avatar` |
+| Photo | `src="./photo.jpg"` in `.hero-avatar` |
 | CV download | `href="./resume.docx"` in the contact section |
 
 ## Structure
